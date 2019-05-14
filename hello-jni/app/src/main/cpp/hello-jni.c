@@ -16,6 +16,7 @@
  */
 #include <string.h>
 #include <jni.h>
+#include <time.h>
 
 /* This is a trivial JNI example where we use a native method
  * to return a new VM String. See the corresponding Java source
@@ -60,4 +61,18 @@ Java_com_example_hellojni_HelloJni_stringFromJNI( JNIEnv* env,
 #endif
 
     return (*env)->NewStringUTF(env, "Hello from JNI !  Compiled with ABI " ABI ".");
+}
+
+static double now_ms(void)
+{
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return tv.tv_sec * 1000.0 + tv.tv_usec / 1000.0;
+}
+
+JNIEXPORT jlong JNICALL
+Java_com_example_hellojni_CmPractice_now_1ms(JNIEnv *env, jobject instance)
+{
+    return (jlong) now_ms();
+
 }

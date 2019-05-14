@@ -17,6 +17,7 @@ package com.example.hellojni;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class HelloJni extends AppCompatActivity {
@@ -29,8 +30,19 @@ public class HelloJni extends AppCompatActivity {
          * function.
          */
         setContentView(R.layout.activity_hello_jni);
-        TextView tv = (TextView)findViewById(R.id.hello_textview);
+        final TextView tv = (TextView)findViewById(R.id.hello_textview);
+
         tv.setText( stringFromJNI() );
+
+        final CmPractice cp = new CmPractice();
+        findViewById(R.id.update_now_ms).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv.append("\n");
+                tv.append("now_ms: " + cp.now_ms());
+            }
+        });
+
     }
     /* A native method that is implemented by the
      * 'hello-jni' native library, which is packaged
