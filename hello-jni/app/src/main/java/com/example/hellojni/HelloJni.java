@@ -39,7 +39,8 @@ public class HelloJni extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 tv.append("\n");
-                tv.append("now_ms: " + cp.now_ms());
+                //tv.append("now_ms: " + cp.now_ms());
+                tv.append(cp.ctime());
             }
         });
 

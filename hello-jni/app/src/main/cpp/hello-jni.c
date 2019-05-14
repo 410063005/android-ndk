@@ -17,6 +17,7 @@
 #include <string.h>
 #include <jni.h>
 #include <time.h>
+#include <stdio.h>
 
 /* This is a trivial JNI example where we use a native method
  * to return a new VM String. See the corresponding Java source
@@ -74,5 +75,18 @@ JNIEXPORT jlong JNICALL
 Java_com_example_hellojni_CmPractice_now_1ms(JNIEnv *env, jobject instance)
 {
     return (jlong) now_ms();
+}
 
+JNIEXPORT jstring JNICALL
+Java_com_example_hellojni_CmPractice_ctime(JNIEnv *env, jobject instance)
+{
+    time_t curtime;
+    time(&curtime);
+
+    // printf("Current time = %s", ctime(&curtime));
+
+    char tmp[50];
+    sprintf(tmp, "Current time = %s", ctime(&curtime));
+
+    return (*env)->NewStringUTF(env, tmp);
 }

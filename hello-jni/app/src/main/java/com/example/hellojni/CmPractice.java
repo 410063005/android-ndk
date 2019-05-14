@@ -6,4 +6,6 @@ public class CmPractice {
     }
 
     public native long now_ms();
+
+    public native String ctime();
 }
