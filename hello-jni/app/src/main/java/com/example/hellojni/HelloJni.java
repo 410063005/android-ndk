@@ -18,7 +18,9 @@ package com.example.hellojni;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HelloJni extends AppCompatActivity {
 
@@ -44,6 +46,13 @@ public class HelloJni extends AppCompatActivity {
             }
         });
 
+        final EditText etUrl = findViewById(R.id.et_url);
+        findViewById(R.id.btnHost).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HelloJni.this, cp.getHostFromUrl(etUrl.getText().toString()), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     /* A native method that is implemented by the
      * 'hello-jni' native library, which is packaged

@@ -15,6 +15,7 @@
  *
  */
 #include <string.h>
+#include <strings.h>
 #include <jni.h>
 #include <time.h>
 #include <stdio.h>
@@ -89,4 +90,24 @@ Java_com_example_hellojni_CmPractice_ctime(JNIEnv *env, jobject instance)
     sprintf(tmp, "Current time = %s", ctime(&curtime));
 
     return (*env)->NewStringUTF(env, tmp);
+}
+
+JNIEXPORT jstring JNICALL
+Java_com_example_hellojni_CmPractice_getHostFromUrl(JNIEnv *env, jobject instance, jstring url_) {
+    const char *url = (*env)->GetStringUTFChars(env, url_, 0);
+    int valid = 0;
+    if (0 == strncmp(url, "http://", 7)) {
+        valid = 1;
+    } else if (0 == strncmp(url, "https://", 8)) {
+        valid = 1;
+    } else {
+        valid = 0;
+    }
+
+    if (valid) {
+        int i = strstr(url, "://") - url + 3;
+        return (*env)->NewStringUTF(env, url + i);
+    }
+
+    return (*env)->NewStringUTF(env, "");
 }

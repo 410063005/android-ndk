@@ -8,4 +8,6 @@ public class CmPractice {
     public native long now_ms();
 
     public native String ctime();
+
+    public native String getHostFromUrl(String url);
 }
