@@ -19,6 +19,10 @@
 #include <jni.h>
 #include <time.h>
 #include <stdio.h>
+#include <android/log.h>
+#include "inlinehook/hooktest.h"
+
+#define LOGI(...)   __android_log_print((int)ANDROID_LOG_INFO, "BitmapProfiler", __VA_ARGS__)
 
 /* This is a trivial JNI example where we use a native method
  * to return a new VM String. See the corresponding Java source
@@ -110,4 +114,25 @@ Java_com_example_hellojni_CmPractice_getHostFromUrl(JNIEnv *env, jobject instanc
     }
 
     return (*env)->NewStringUTF(env, "");
+}
+
+JNIEXPORT void JNICALL
+Java_com_example_hellojni_HelloJni_callHookTestHook(JNIEnv *env, jobject instance) {
+    LOGI("before call hook()");
+    hook();
+    LOGI("after call hook()");
+}
+
+JNIEXPORT void JNICALL
+Java_com_example_hellojni_HelloJni_callHookTestUnhook(JNIEnv *env, jobject instance) {
+    LOGI("before call hook()");
+    unHook();
+    LOGI("after call hook()");
+}
+
+JNIEXPORT void JNICALL
+Java_com_example_hellojni_HelloJni_callHookTestCallOriginal(JNIEnv *env, jobject instance) {
+    LOGI("before call callOriginal()");
+    callOriginal();
+    LOGI("after call callOriginal()");
 }

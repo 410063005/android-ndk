@@ -53,6 +53,27 @@ public class HelloJni extends AppCompatActivity {
                 Toast.makeText(HelloJni.this, cp.getHostFromUrl(etUrl.getText().toString()), Toast.LENGTH_SHORT).show();
             }
         });
+
+        findViewById(R.id.btnHook).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callHookTestHook();
+            }
+        });
+
+        findViewById(R.id.btnUnhook).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callHookTestUnhook();
+            }
+        });
+
+        findViewById(R.id.btnCallOriginal).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callHookTestCallOriginal();
+            }
+        });
     }
     /* A native method that is implemented by the
      * 'hello-jni' native library, which is packaged
@@ -77,6 +98,13 @@ public class HelloJni extends AppCompatActivity {
      * /data/data/com.example.hellojni/lib/libhello-jni.so at
      * installation time by the package manager.
      */
+
+    public native void callHookTestHook();
+
+    public native void callHookTestUnhook();
+
+    public native void callHookTestCallOriginal();
+
     static {
         System.loadLibrary("hello-jni");
     }

@@ -28,20 +28,45 @@
         app:layout_constraintTop_toBottomOf="@+id/hello_textview" />
 
     <EditText
-        android:text="http://www.baidu.com/"
         android:id="@+id/et_url"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:text="http://www.baidu.com/"
         app:layout_constraintEnd_toStartOf="@+id/btnHost"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/update_now_ms" />
 
     <Button
-        android:text="获取host"
         android:id="@+id/btnHost"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:text="获取host"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/et_url"
         app:layout_constraintTop_toBottomOf="@id/update_now_ms" />
+
+    <Button
+        android:id="@+id/btnHook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="call hook"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_url" />
+
+    <Button
+        android:id="@+id/btnUnhook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="call unhook"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnHook"
+        app:layout_constraintStart_toEndOf="@+id/btnHook" />
+
+    <Button
+        android:id="@+id/btnCallOriginal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="call original"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnHook"
+        app:layout_constraintStart_toEndOf="@+id/btnUnhook" />
+
 </android.support.constraint.ConstraintLayout>
